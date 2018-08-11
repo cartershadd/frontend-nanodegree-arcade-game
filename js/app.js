@@ -44,9 +44,11 @@ var Player = function() {
   this.y = 400;
 };
 
-//makes player reset if the player and enemy collide.
+// Makes player reset if the player and enemy collide.
 Player.prototype.update = function(dt) {
   allEnemies.forEach(function(enemy) {
+    // Player and enemy will collide if they share the same square,
+    // but the size of their avatar is also taken into account.
     if (player.x + player.width > enemy.x &&
       player.y + player.height > enemy.y &&
       enemy.x + enemy.width > player.x &&
@@ -55,8 +57,8 @@ Player.prototype.update = function(dt) {
         player.y = 400;
     }
   });
-  //resets player position and sends a message
-  //when you reach the water.
+  // Resets player position and sends a message
+  // when you reach the water.
   if (this.y < 10) {
     alert("Let's go for a swim!");
     this.x = 200;
@@ -68,8 +70,8 @@ Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// This allows user to move the player with the arrow keys
-//player cannot move offscreen either left, right or down
+// This allows user to move the player with the arrow keys.
+// Player cannot move offscreen either left, right or down
 Player.prototype.handleInput = function(direction) {
     this.direction = direction;
     if (this.direction === 'left' && this.x > 0) {
