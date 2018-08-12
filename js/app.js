@@ -49,14 +49,14 @@ Player.prototype.update = function(dt) {
   allEnemies.forEach(function(enemy) {
     // Player and enemy will collide if they share the same square,
     // but the size of their avatar is also taken into account.
-    if (player.x + player.width > enemy.x &&
+    if (this.x + this.width > enemy.x &&
       this.y + this.height > enemy.y &&
       enemy.x + enemy.width > this.x &&
       enemy.y + enemy.height > this.y) {
-        player.x = 200;
-        player.y = 400;
+        this.x = 200;
+        this.y = 400;
     }
-  }).bind(this);
+  }.bind(this));
   // Resets player position and sends a message
   // when you reach the water.
   if (this.y < 10) {
@@ -92,9 +92,9 @@ Player.prototype.handleInput = function(direction) {
 
 const allEnemies = [];
 for (var i=0; i < 10; i++) {
-  var enemy = new Enemy(-300, 40 + i * 90);
+  var enemy = new Enemy(300, 40 + i * 90);
+  allEnemies.push(new Enemy());
 }
-//allEnemies.push(new Enemy());
 
 const player = new Player();
 
